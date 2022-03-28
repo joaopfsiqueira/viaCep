@@ -1,0 +1,18 @@
+service: altu-viacep
+
+functions:
+  requestViaCep:
+    handler: services/consultaViaCep/routes.requestViaCep
+    environment:
+      client: exampleClient
+      service: requestViaCep
+    events:
+      - http:
+          path: requestViaCep
+          method: get
+  
+
+customDomain:
+  domainName: 'api.altu.com.br'
+  basePath: 'consultaViaCep-${self:provider.stage}'
+  stage: ${self:provider.stage}
